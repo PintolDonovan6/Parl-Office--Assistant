@@ -1,23 +1,15 @@
-async function sendMessage() {
-  let input = document.getElementById("user-input");
-  let message = input.value;
+async function send() {
+  const msg = document.getElementById("msg").value;
 
-  addMessage("You", message, "user");
+  document.getElementById("chat").innerHTML += "<p><b>You:</b> " + msg + "</p>";
 
-  const res = await fetch("http://localhost:3000/chat", {
+  const res = await fetch("/chat", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({message})
+    body: JSON.stringify({message: msg})
   });
 
   const data = await res.json();
 
-  addMessage("Assistant", data.reply, "bot");
-
-  input.value = "";
-}
-
-function addMessage(sender, text, type) {
-  let box = document.getElementById("chat-box");
-  box.innerHTML += `<div class="message ${type}"><b>${sender}:</b> ${text}</div>`;
+  document.getElementById("chat").innerHTML += "<p><b>Bot:</b> " + data.reply + "</p>";
 }
