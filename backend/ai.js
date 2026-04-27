@@ -1,19 +1,19 @@
-async function handleChat(message) {
+function replyAI(msg) {
+  msg = msg.toLowerCase();
 
-  // SIMPLE RULE-BASED START (free version)
-  if (message.toLowerCase().includes("memo")) {
-    return "Here is a memo template: [To, From, Subject, Body, Signature]";
+  if (msg.includes("memo")) {
+    return "Memo format: To, From, Subject, Body.";
   }
 
-  if (message.toLowerCase().includes("meeting")) {
-    return "Meeting Minutes Template: Date, Attendees, Agenda, Decisions, Actions.";
+  if (msg.includes("meeting")) {
+    return "Meeting notes: Date, Agenda, Decisions.";
   }
 
-  if (message.toLowerCase().includes("leave")) {
-    return "Leave Form: Name, Position, Dates, Reason, Approval.";
+  if (msg.includes("leave")) {
+    return "Leave form: Name, Dates, Reason.";
   }
 
-  return "I can help draft memos, minutes, letters, and office documents.";
+  return "I can help with memos, meetings, and office tasks.";
 }
 
-module.exports = { handleChat };
+module.exports = { replyAI };
