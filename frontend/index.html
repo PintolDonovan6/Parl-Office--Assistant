@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Parl Office Assistant</title>
+
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#003366" />
 </head>
-<body>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
 
   <h1>Parl Office Assistant</h1>
+  <p>Your workplace assistant.</p>
 
-  <input id="msg" placeholder="Ask something...">
-  <button onclick="send()">Send</button>
+  <input id="msg" placeholder="Ask something..." style="padding:8px; width:70%;">
+  <button onclick="reply()" style="padding:8px;">Send</button>
 
-  <div id="chat"></div>
+  <div id="chat" style="margin-top:20px;"></div>
 
-  <script src="app.js"></script>
+  <script>
+    function reply() {
+      const msg = document.getElementById("msg").value;
+      const chat = document.getElementById("chat");
+
+      chat.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+      chat.innerHTML += "<p><b>Assistant:</b> I received: " + msg + "</p>";
+      document.getElementById("msg").value = "";
+    }
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./service-worker.js");
+    }
+  </script>
 
 </body>
 </html>
