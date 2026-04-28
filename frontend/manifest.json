@@ -1,13 +1,13 @@
 {
   "name": "Parl Office Assistant",
   "short_name": "ParlAssist",
-  "start_url": "./",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#003366",
   "icons": [
     {
-      "src": "./icon.png",
+      "src": "icon.png",
       "sizes": "192x192",
       "type": "image/png"
     }
