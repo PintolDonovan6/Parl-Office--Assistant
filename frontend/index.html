@@ -8,6 +8,7 @@
   <!-- PWA SETTINGS -->
   <link rel="manifest" href="./manifest.json">
   <meta name="theme-color" content="#003366">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
   <style>
     body {
@@ -26,6 +27,8 @@
       padding: 10px;
       border-radius: 8px;
       min-height: 200px;
+      max-height: 400px;
+      overflow-y: auto;
     }
 
     input {
@@ -59,7 +62,7 @@
 
   <script>
     function send() {
-      const msg = document.getElementById("msg").value;
+      const msg = document.getElementById("msg").value.trim();
       const chat = document.getElementById("chat");
 
       if (!msg) return;
@@ -68,17 +71,20 @@
 
       let reply = "I can help with memos, meetings, and office tasks.";
 
-      if (msg.toLowerCase().includes("memo")) {
+      const text = msg.toLowerCase();
+
+      if (text.includes("memo")) {
         reply = "Memo format: To, From, Subject, Body, Signature.";
-      } else if (msg.toLowerCase().includes("meeting")) {
+      } else if (text.includes("meeting")) {
         reply = "Meeting notes: Date, Agenda, Attendees, Decisions.";
-      } else if (msg.toLowerCase().includes("leave")) {
+      } else if (text.includes("leave")) {
         reply = "Leave form: Name, Dates, Reason, Approval.";
       }
 
       chat.innerHTML += "<p><b>Assistant:</b> " + reply + "</p>";
 
       document.getElementById("msg").value = "";
+      chat.scrollTop = chat.scrollHeight;
     }
 
     // Register service worker for PWA
